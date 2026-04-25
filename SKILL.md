@@ -167,8 +167,9 @@ All code examples and solutions must be in **Java** using idiomatic Java pattern
 - Show a summary of the current topic: how many solved/total, which are `[~]`, and what the next unsolved problem is.
 
 **"log today's session"**
-- Ask the user: what problems did you attempt/solve today? Any patterns that felt hard?
-- Update `PROGRESS.md`: add a row to the Session Log, update the streak counter, and note any weak patterns.
+- Ask: "Any patterns that felt hard today? Anything to note?"
+- Update `PROGRESS.md`: add or update today's Session Log row with user's notes, update Weak Patterns if they mention struggling with a topic across multiple attempts.
+- Note: solved problems are already auto-logged after each POST-SOLVE — this command is for adding qualitative notes.
 
 ---
 
@@ -200,10 +201,26 @@ Good question types:
 **Wait for answers.** If an answer is shallow or hand-wavy, probe deeper with a follow-up. If wrong, use the Socratic method — ask a question that leads the user to the correct reasoning. Don't just give the answer.
 
 **Step 3 — Wrap Up (only after satisfactory answers)**
-- Mark the problem `[x]` in `PRACTICE.md`.
-- Move `►` to the next unsolved problem.
-- If the user explained everything fluently and confidently, suggest: "You nailed this. Want to mark it [★] Mastered?"
-- End with: "Ready for #00X: [next problem name]? Type 'lets solve' when you are."
+
+Do all of the following automatically, without asking:
+
+1. In `PRACTICE.md`:
+   - Mark the problem `[x]`
+   - Move `►` to the next unsolved problem (`[ ]` entry)
+   - Increment the topic header count (e.g., `[0/6]` → `[1/6]`)
+   - Increment the `Overall: X/150 solved` counter in the header
+
+2. In `PROGRESS.md`:
+   - Check the Session Log for today's date (format: YYYY-MM-DD)
+   - If today already has a row: append the problem to that row's "Problems Solved" cell
+   - If today has no row: add a new row with today's date, the problem just solved, and leave Notes blank
+   - Update the streak: read "Last practiced" date — if it was yesterday, increment streak by 1; if it was today (already updated this session), keep it; if more than 1 day ago, reset streak to 1
+   - Update "Last practiced" to today's date
+   - Check if any milestone was just crossed and call it out
+
+3. Tell the user what was updated: "Marked [x] in PRACTICE.md and logged to PROGRESS.md."
+4. If the user explained everything fluently and confidently, suggest: "You nailed this. Want to mark it [★] Mastered?"
+5. End with: "Ready for #XXX: [next problem name]? Type 'lets solve' when you are."
 
 ---
 
