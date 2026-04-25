@@ -1,391 +1,223 @@
 <div align="center">
 
-# Algo Sensei 🥋
+# Go Sensei 🥋
 
-**Your Personal LeetCode & DSA Mentor**
+**Your Personal Go Core Concepts Mentor**
 
-Master algorithms through intelligent guidance, not just solutions.
-
-![Algo Sensei Demo](demo/demo.gif)
+Machine-round interview prep for Go developers. Practice goroutines, channels, concurrency patterns, and more — with intelligent hints, code review, and mock interviews.
 
 [![Claude Code](https://img.shields.io/badge/Claude-Code-blueviolet)](https://claude.ai/code)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 </div>
 
 ---
 
-## How to Use This Skill
+## What This Is
 
-### Setup
+Go Sensei is a Claude Code skill that helps experienced Go developers prepare for **Go machine-round interviews**. It is not a DSA/LeetCode tool — it focuses entirely on Go-specific concepts:
+
+- Goroutines, channels, select, WaitGroup
+- sync package (Mutex, RWMutex, Once, Cond, Pool)
+- Context propagation and cancellation
+- Concurrency patterns (worker pool, rate limiter, errgroup, circuit breaker)
+- OS signals and graceful shutdown
+- Error handling idioms (errors.Is, errors.As, wrapping)
+- Interfaces, generics, HTTP, io patterns
+- Testing with the race detector, benchmarks, goroutine leak detection
+- Memory and GC (escape analysis, sync.Pool)
+
+**49 challenges** across 15 topic groups, sequenced from foundational to production-grade.
+
+---
+
+## Setup
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/karanb192/algo-sensei.git
-cd algo-sensei
+# Clone the repo
+git clone <your-repo-url>
+cd golang-ai-practice
 
-# 2. Open Claude Code in this directory
+# Open Claude Code in this directory
 claude .
 ```
 
-**`PRACTICE.md` is the source of truth for your progress.** It contains 120 curated problems ordered by interview priority, each with a status field you can update manually or via commands.
+That's it. The skill activates automatically through `SKILL.md` and `CLAUDE.md`.
 
 ---
 
-### Daily Workflow
+## Daily Workflow
 
 ```
-1. Open terminal in the repo directory → run: claude .
+1. Open terminal in repo → run: claude .
+
 2. Type:  lets solve
-   → Claude finds your current ► problem and presents it (no hints yet)
-3. Think it through, write your Java solution
+   → Claude finds your current ► problem, presents the challenge
+      and a one-line "why this matters in production" hook.
+      No hints yet — you figure out the approach first.
+
+3. Think it through, write your Go solution in solution.go
+
 4. Type:  here is my solution
    [paste your code]
-5. Answer Claude's cross-questions to prove real understanding
-6. Problem gets marked [x], ► moves to the next one
-7. Optionally type:  log today's session
-   → Updates PROGRESS.md with your streak and session notes
+
+5. Claude reviews for: race conditions, goroutine leaks,
+   idiomatic Go, correct channel/context usage
+
+6. Answer 3-5 cross-questions about WHY your solution works
+
+7. Problem gets marked [x], ► moves to the next one
+
+8. Optionally type:  log today's session
+   → Updates PROGRESS.md with streak and notes
 ```
 
 ---
 
-### Commands Reference
+## Commands Reference
 
 | What you type | What happens |
 |---------------|-------------|
-| `lets solve` | Presents the current ► problem |
-| `lets solve #042` | Jump to a specific problem by number |
+| `lets solve` | Presents the current ► challenge |
+| `lets solve #G03` | Jump to a specific challenge by ID |
 | `here is my solution` | Enter post-solve review + cross-questioning |
 | `I solved it` | Same as above |
 | `skip` | Marks current problem `[~]` (attempted), moves ► forward |
-| `too hard` | Same as skip |
-| `mark attempted` | Same as skip |
-| `mark solved #042` | Marks problem #042 as `[x]` without a review session |
+| `mark solved #G03` | Marks G03 as `[x]` without a full review |
 | `update practice` | Shows current topic progress summary |
-| `log today's session` | Updates PROGRESS.md with today's work |
+| `log today's session` | Updates PROGRESS.md with today's notes |
+| `check solution` | Get hints on your current solution without giving the answer |
 
 ---
 
-### Manual Overrides
+## Modes (Auto-detected)
 
-**PRACTICE.md is a plain Markdown file — edit it directly any time.**
+Go Sensei detects what you need and switches modes automatically:
 
-- Mark a problem solved by hand: change `[ ]` → `[x]`
-- Mark attempted: change `[ ]` → `[~]`
-- Mark mastered: change `[x]` → `[★]`
-- Move the `►` marker to any problem you want to work on next
-- Update the `[0/6]` counters in section headers after manual edits
+### Tutor Mode
+Triggered by: "explain goroutines", "how does the scheduler work", "I don't understand sync.Cond"
+
+Teaches Go at a senior-engineer level — GMP scheduler, runtime internals, escape analysis, GC behaviour. Not syntax tutorials.
+
+```
+You: "explain how context cancellation propagates"
+→ Gets a peer-level explanation of the context tree, ctx.Done(),
+  and what the runtime does when cancel() is called
+```
+
+### Hint Mode
+Triggered by: "give me a hint", "I'm stuck", "don't tell me the answer"
+
+5-level progressive hints anchored to Go's failure modes: races, leaks, deadlocks, context, channel discipline.
+
+```
+You: "stuck on the worker pool, give me a hint"
+→ Hint #1: "How do you know when all workers are done?"
+  (guides you to WaitGroup without naming it)
+```
+
+### Review Mode
+Triggered by: "check solution", "review my code", "is this idiomatic?"
+
+Checks for:
+- Would `go test -race` pass?
+- Any goroutine leaks?
+- Is the channel closed by the sender only?
+- Is `WaitGroup.Add` called before the goroutine starts?
+- Are errors wrapped with `%w`, checked with `errors.Is`?
+
+### Interview Mode
+Triggered by: "mock interview", "practice machine round", "be the interviewer"
+
+Simulates a Go machine-round interview at a company that runs Go in production. Evaluates concurrency correctness, idiomatic style, communication, and production thinking. Picks from Easy / Medium / Hard challenges.
+
+```
+You: "mock interview, medium difficulty"
+→ Interviewer roleplay starts, presents a concurrency problem,
+  evaluates approach before code, checks for race conditions,
+  gives detailed feedback rubric at the end
+```
+
+### Pattern Mapper Mode
+Triggered by: "what pattern should I use", "channel vs mutex here?", "what concurrency design fits this?"
+
+Maps your problem to the right Go pattern from the full catalog: worker pool, pipeline, fan-in/out, semaphore, rate limiter, pub/sub, circuit breaker, errgroup, done channel, nil channel trick.
+
+```
+You: "I need to call 5 APIs in parallel, cancel all if any fails"
+→ "This is errgroup.WithContext — here's why and how"
+```
 
 ---
 
-### What the Practice System Does
-
-When you submit a solution, Claude doesn't just tell you if it's correct. It:
-1. Reviews time/space complexity and gives Java-specific idiom feedback
-2. Asks 3–5 cross-questions about **why** the solution works — edge cases, tradeoffs, variants
-3. Only marks the problem solved after you've answered satisfactorily
-4. Connects patterns to real backend systems (LRU cache, TCP flow control, DB indexes, etc.)
-
-The goal isn't to grind 120 problems. It's to build genuine pattern intuition so you can solve problems you've never seen before.
-
----
-
-**Algo Sensei** is an intelligent Claude Code skill that transforms how you practice LeetCode and master Data Structures & Algorithms. Instead of just giving you answers, it **teaches you to think** like a senior engineer.
-
-## Why Algo Sensei?
-
-Traditional LeetCode practice has a problem: **Copy-pasting solutions doesn't build problem-solving skills.**
-
-Algo Sensei is different:
-- ✅ **Teaches patterns** instead of memorizing solutions
-- ✅ **Progressive hints** that guide you without spoiling
-- ✅ **Real interview simulation** with feedback
-- ✅ **Intelligent mode detection** - adapts to what you need
-- ✅ **Pattern recognition training** - see problems like pros do
-
-## Features
-
-### 🎓 Tutor Mode
-Get foundational understanding through:
-- Clear concept explanations with examples
-- Step-by-step problem breakdowns
-- Visual diagrams (ASCII art)
-- Building intuition, not just memorization
-
-### 💡 Hint Mode (The Secret Weapon)
-5-level progressive hint system:
-1. Observation hints (gentlest)
-2. Pattern recognition nudges
-3. Approach direction
-4. Specific technique reveal
-5. Pseudocode skeleton (last resort)
-
-**You learn 10x more** when you discover the solution yourself with guidance.
-
-### 🔍 Review Mode
-Comprehensive code review covering:
-- Correctness verification
-- Time & space complexity analysis
-- Code quality feedback
-- Optimization opportunities
-- Edge case identification
-- Interview readiness assessment
-
-### 🎤 Interview Mode
-Realistic mock interviews with:
-- Professional interviewer roleplay
-- Real-time feedback and hints
-- Communication evaluation
-- Detailed performance rubric
-- Post-interview improvement plan
-
-### 🗺️ Pattern Mapper Mode
-Learn to recognize algorithmic patterns dynamically:
-- Teaches HOW to identify patterns, not just memorize them
-- Draws on Claude's comprehensive knowledge of ALL patterns
-- Builds transferable pattern-recognition skills
-- Works with any pattern: Two Pointers, DP, Graphs, Monotonic Stack, and more
-
-**Stop solving random problems. Start recognizing patterns.**
-
-## Installation
-
-### For Claude Code Users (Recommended)
-
-**Option 1: Install to personal skills (available in all projects)**
-
-```bash
-# Clone the repository
-git clone https://github.com/karanb192/algo-sensei.git
-
-# Copy to your personal Claude skills directory
-cp -r algo-sensei ~/.claude/skills/
-
-# Restart Claude Code
-```
-
-**Option 2: Install to project (team-shared via git)**
-
-```bash
-# Clone the repository
-git clone https://github.com/karanb192/algo-sensei.git
-
-# Copy to your project's Claude skills directory
-cp -r algo-sensei /path/to/your/project/.claude/skills/
-
-# Commit to git so your team gets it too!
-git add .claude/skills/algo-sensei
-git commit -m "Add Algo Sensei skill for DSA practice"
-```
-
-### For Claude.ai Users
-
-Algo Sensei works great on Claude.ai too! Here's how:
-
-**Method 1: Project Knowledge (Recommended - Full Experience)**
-
-1. Go to [Claude.ai](https://claude.ai) and create a new Project
-2. Click "Add content" → Upload files
-3. Upload these key files for full functionality:
-   - `SKILL.md` (main skill)
-   - All files from `modes/` folder (5 files)
-   - `docs/dsa-cheatsheet.md` (optional but helpful)
-   - `templates/solutions/solution-template.md` (for structured solutions)
-4. All conversations in this project now have full Algo Sensei capabilities!
-
-**Method 1b: Quick Setup (SKILL.md only)**
-
-For a lighter setup, just upload `SKILL.md` - you'll get intelligent routing but won't have access to the detailed mode instructions.
-
-**Method 2: Copy Specific Modes**
-
-1. Browse to the mode you need (e.g., `modes/hint-mode.md`)
-2. Copy the entire content
-3. Paste it as your first message in a new conversation
-4. Continue with your DSA problem
-
-**Method 3: Manual Integration**
-
-If you have Claude Pro with custom instructions:
-1. Add shortened version of `SKILL.md` to your custom instructions
-2. Algo Sensei will be available in all chats
-
-> **Tip:** Project Knowledge with all files uploaded gives you the full experience - Claude can access all modes, patterns, and templates just like in Claude Code!
-
-## Quick Start
-
-Once installed, Algo Sensei automatically activates when you need help with DSA/LeetCode problems.
-
-### Usage Examples
-
-**Get hints on a problem:**
-```
-You: "I'm stuck on LeetCode #3 - Longest Substring Without Repeating Characters. Can you give me a hint?"
-
-Algo Sensei: [Automatically switches to Hint Mode]
-💡 Hint #1: What if you needed to track which characters you've seen recently?
-...
-```
-
-**Learn a concept:**
-```
-You: "Can you explain dynamic programming to me?"
-
-Algo Sensei: [Automatically switches to Tutor Mode]
-📚 Let's build your understanding of DP from the ground up...
-```
-
-**Review your code:**
-```
-You: "Here's my solution for Two Sum. Can you review it?"
-[paste code]
-
-Algo Sensei: [Automatically switches to Review Mode]
-🔍 Code Review: Two Sum
-...
-```
-
-**Practice interview:**
-```
-You: "Can we do a mock interview with a medium-level problem?"
-
-Algo Sensei: [Automatically switches to Interview Mode]
-🎤 Hi! I'm Alex, senior engineer at TechCo. Ready to start?
-...
-```
-
-**Identify pattern:**
-```
-You: "I'm not sure what approach to use for this problem..."
-
-Algo Sensei: [Automatically switches to Pattern Mapper Mode]
-🗺️ Let me help you identify the pattern...
-```
-
-## Pattern Recognition Training
-
-Instead of memorizing fixed templates, Algo Sensei teaches you to recognize patterns dynamically:
-
-- **Signal keyword detection** - Learn to spot clues in problem statements
-- **Problem characteristic analysis** - Identify data structures and constraints
-- **Pattern matching skills** - Build intuition for which approach fits
-- **Comprehensive explanations** - Understand any algorithmic pattern Claude knows
-
-Works for all patterns: Two Pointers, Sliding Window, DP, Graphs, Heaps, Tries, Monotonic Stack, and more!
-
-## What Makes This Different?
-
-### vs. LeetCode Premium
-- ✅ Free and open-source
-- ✅ Personalized teaching style
-- ✅ Deeper explanations
-- ✅ Pattern-focused approach
-
-### vs. ChatGPT/Claude prompts
-- ✅ Specialized for DSA/interviews
-- ✅ Structured progressive learning
-- ✅ Intelligent mode switching
-- ✅ Consistent methodology
-
-### vs. YouTube tutorials
-- ✅ Interactive and personalized
-- ✅ Adapts to your skill level
-- ✅ Available 24/7
-- ✅ Covers YOUR specific problems
-
-## File Structure
+## Project Structure
 
 ```
-algo-sensei/
-├── SKILL.md                          # Main skill file (intelligent router)
-├── README.md                         # You are here
+golang-ai-practice/
+├── SKILL.md                    # Go Sensei skill (mode router)
+├── CLAUDE.md                   # Review behaviour, language rules
+├── PRACTICE.md                 # 49 Go challenges with progress tracking
+├── PROGRESS.md                 # Streak, session log, milestones
+├── solution.go                 # Your scratch file for solutions
 ├── modes/
-│   ├── tutor-mode.md                # Concept explanations
-│   ├── hint-mode.md                 # Progressive hints
-│   ├── review-mode.md               # Code review
-│   ├── interview-mode.md            # Mock interviews
-│   └── pattern-mapper-mode.md       # Pattern recognition
-├── templates/
-│   └── solutions/
-│       └── solution-template.md     # Multi-language solution format
-├── scripts/
-│   └── [future: test generators, complexity analyzers]
+│   ├── tutor-mode.md           # Runtime internals explanations
+│   ├── hint-mode.md            # Progressive hint system
+│   ├── review-mode.md          # Go-specific code review checklist
+│   ├── interview-mode.md       # Machine-round simulation
+│   └── pattern-mapper-mode.md  # Go concurrency pattern catalog
 └── docs/
-    └── dsa-cheatsheet.md            # Quick reference
+    └── go-cheatsheet.md        # Quick reference: channels, sync, context, patterns
 ```
 
-## Philosophy
+---
 
-Algo Sensei is built on research-backed learning principles:
+## The 49 Challenges at a Glance
 
-1. **Socratic Method**: Learn through questions, not lectures
-2. **Progressive Disclosure**: Start simple, add complexity gradually
-3. **Pattern Recognition**: Master frameworks, not individual problems
-4. **Deliberate Practice**: Struggle productively with guidance
-5. **Metacognition**: Understand your thinking process
+| Group | Topics | Count |
+|-------|--------|-------|
+| Goroutines | WaitGroup, races, leaks, semaphore | 4 |
+| Channels | Buffered/unbuffered, generator, pipeline, done, nil | 5 |
+| Select | Non-blocking, timeout, fan-in | 3 |
+| sync Package | Mutex, Once, RWMutex, Cond | 4 |
+| sync/atomic | Atomic counter, CAS | 2 |
+| Context | Cancel, timeout, WithValue, leak fix | 4 |
+| Concurrency Patterns | Worker pool, rate limiter, errgroup, circuit breaker | 5 |
+| OS Signals | SIGTERM/SIGINT, HTTP graceful shutdown | 2 |
+| Error Handling | Custom errors, wrapping, panic/recover, retry | 4 |
+| Interfaces | io.Reader, type switch, mock for testing | 3 |
+| Generics | Stack, Map func, Set with comparable | 3 |
+| HTTP & Networking | Handler timeout, middleware, retry client | 3 |
+| io Patterns | Custom Writer, io.Pipe, bufio.Scanner | 3 |
+| Testing | Table-driven, benchmark, race detector, goleak | 4 |
+| Memory & Performance | Escape analysis, sync.Pool, slice pre-allocation | 3 |
 
-**The goal isn't solving 1000 problems. It's building the mental framework to solve ANY problem.**
+---
 
+## Manual Progress Edits
 
-## Roadmap
+`PRACTICE.md` is a plain Markdown file — edit it directly any time:
 
-- [x] Core 5 modes (Tutor, Hint, Review, Interview, Pattern Mapper)
-- [x] Dynamic pattern recognition (leverages Claude's full knowledge)
-- [x] Multi-language support (Python, Java, C++, JavaScript, Go, etc.)
-- [ ] Interactive visualization scripts
-- [ ] Complexity analyzer tool
-- [ ] Test case generator
-- [ ] Spaced repetition integration
-- [ ] Progress tracking across sessions
+- Mark solved: `[ ]` → `[x]`
+- Mark attempted: `[ ]` → `[~]`
+- Mark mastered: `[x]` → `[★]`
+- Move `►` to whatever problem you want to work on next
 
-## Contributing
+---
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+## What Cross-Questioning Looks Like
 
-**Ideas for contributions:**
-- Improve mode instructions based on user feedback
-- Add more language-specific examples
-- Create automation scripts (test generators, complexity analyzers)
-- Bug fixes and improvements
-- Documentation enhancements
+After a correct solution, Claude asks 3-5 questions anchored to your actual code — not generic Go trivia:
 
-## FAQ
+- "Would `go test -race` flag the goroutine on line 12? Why?"
+- "What happens if GOMAXPROCS=1 — does your solution still work?"
+- "You chose a mutex here instead of a channel — when would you flip that decision?"
+- "Under what condition does the goroutine you spawned on line 8 never exit?"
+- "How does `database/sql`'s connection pool solve the same problem you just wrote?"
 
-**Q: Do I need Claude Code to use this?**
-A: Algo Sensei works best with Claude Code, but you can use individual mode files as prompts in Claude.ai.
+You only mark the problem solved after you've answered satisfactorily. That's what builds the instinct.
 
-**Q: Is this better than LeetCode Premium?**
-A: Different purposes. Algo Sensei teaches you HOW to think. LeetCode Premium gives you solutions. Use both!
-
-**Q: Can this help me pass FAANG interviews?**
-A: Yes! Interview Mode simulates real interview conditions, and Pattern Mapper teaches the frameworks used in top companies.
-
-**Q: I'm a complete beginner. Is this for me?**
-A: Absolutely! Tutor Mode is designed for beginners. Algo Sensei adapts to your level.
-
-**Q: Does it support languages other than Python?**
-A: Yes! Algo Sensei supports all major programming languages (Python, JavaScript, Java, C++, Go, TypeScript, Rust, etc.). Just specify your preferred language and Claude will adapt accordingly.
+---
 
 ## License
 
-MIT License - See [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Built for [Claude Code](https://claude.ai/code) by Anthropic
-- Inspired by the [LeetCode](https://leetcode.com) community
-- Pattern frameworks from [NeetCode](https://neetcode.io), [AlgoMonster](https://algo.monster), and interview experience
-
-## Connect
-
-- ⭐ Star this repo if Algo Sensei helped you!
-- 🐛 Report issues via GitHub Issues
-- 💡 Suggest features via GitHub Discussions
-- 🐦 Share your success: `#AlgoSensei`
-
----
-
-**Ready to level up your DSA game?** Install Algo Sensei and master patterns, not just problems. 🥋
-
-Made with ❤️ for developers preparing for their dream roles.
+MIT — see [LICENSE](LICENSE).
