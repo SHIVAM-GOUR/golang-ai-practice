@@ -1,8 +1,47 @@
 # Go Core Concepts Practice Tracker
 
-**Overall: 0/49 solved**
+**Overall: 0/79 solved**
 
 > Legend: `[ ]` Unsolved · `[~]` Attempted · `[x]` Solved · `[★]` Mastered · `►` Current
+
+---
+
+## Fundamentals [0/30]
+
+> Mixed topics, very easy to easy. Start here if you want to warm up before the deeper groups.
+
+| ID | Challenge | Topic | Status |
+|----|-----------|-------|--------|
+| F01 ► | Launch a goroutine, print "hello" from inside it | Goroutines | [ ] |
+| F02 | Launch a goroutine and wait for it to finish using WaitGroup | Goroutines | [ ] |
+| F03 | Send a value into an unbuffered channel from a goroutine, receive in main | Channels | [ ] |
+| F04 | Create a buffered channel of size 3, send 3 values without blocking | Channels | [ ] |
+| F05 | Close a channel after sending; iterate its values with range | Channels | [ ] |
+| F06 | Use select to receive from whichever of two channels is ready first | Select | [ ] |
+| F07 | Use select with a default case to do a non-blocking receive | Select | [ ] |
+| F08 | Protect a shared integer counter with sync.Mutex across 5 goroutines | sync | [ ] |
+| F09 | Use sync.Once to initialize a config struct exactly once | sync | [ ] |
+| F10 | Use sync.WaitGroup to launch 5 goroutines and wait for all to finish | sync | [ ] |
+| F11 | Increment a counter from 100 goroutines using atomic.AddInt64 | atomic | [ ] |
+| F12 | Create a context with cancel, pass it to a goroutine, call cancel() | Context | [ ] |
+| F13 | Create a context with a 1-second timeout; show it expires | Context | [ ] |
+| F14 | Use context.WithValue to attach a request-ID string, read it inside a func | Context | [ ] |
+| F15 | Use defer to ensure a file (or fake closer) is always closed | defer | [ ] |
+| F16 | Use defer mu.Unlock() immediately after mu.Lock() in a function | defer | [ ] |
+| F17 | Define a sentinel error with errors.New; check it with errors.Is | Errors | [ ] |
+| F18 | Wrap an error with fmt.Errorf("...: %w", err); unwrap with errors.As | Errors | [ ] |
+| F19 | Create a custom error type with an extra Code field; implement error interface | Errors | [ ] |
+| F20 | Use recover() inside a deferred function to catch a panic | panic/recover | [ ] |
+| F21 | Implement fmt.Stringer on a struct (print a formatted representation) | Interfaces | [ ] |
+| F22 | Define a small interface (Doer); implement it on two different structs | Interfaces | [ ] |
+| F23 | Type-assert an interface value to a concrete type; handle the false case | Interfaces | [ ] |
+| F24 | Implement io.Reader on a struct that reads from a fixed string | Interfaces | [ ] |
+| F25 | Write a generic Map[T, U] function that transforms a slice | Generics | [ ] |
+| F26 | Write a goroutine that stops when a done channel is closed | Channels | [ ] |
+| F27 | Fan-out: launch N goroutines each writing a result to a shared slice (with mutex) | Goroutines | [ ] |
+| F28 | Use time.After in a select to time out a slow operation | Select | [ ] |
+| F29 | Write a table-driven test for a simple pure function | Testing | [ ] |
+| F30 | Use strings.Builder to concatenate 1000 strings efficiently | Performance | [ ] |
 
 ---
 
@@ -10,7 +49,7 @@
 
 | ID | Challenge | Difficulty | Status |
 |----|-----------|------------|--------|
-| G01 ► | Launch N goroutines with WaitGroup, collect results in order | Easy | [ ] |
+| G01 | Launch N goroutines with WaitGroup, collect results in order | Easy | [ ] |
 | G02 | Fix a data race on a shared counter | Easy | [ ] |
 | G03 | Detect and fix a goroutine leak | Medium | [ ] |
 | G04 | Semaphore: limit max concurrent goroutines using a buffered channel | Medium | [ ] |
