@@ -1,14 +1,14 @@
 # Progress Tracker
 
 ## Streak
-**Current streak:** 0 days
-**Last practiced:** —
-**Longest streak:** 0 days
+**Current streak:** 1 days
+**Last practiced:** 2026-04-29
+**Longest streak:** 1 days
 
 ---
 
 ## Milestones
-- [ ] First problem solved
+- [x] First problem solved
 - [ ] Complete Fundamentals (30/30)
 - [ ] Complete Goroutines (4/4)
 - [ ] Complete Channels (5/5)
@@ -40,7 +40,8 @@
 
 | Date | Problems Attempted | Problems Solved | Notes |
 |------|-------------------|-----------------|-------|
-| — | — | — | — |
+| 2026-04-29 | 1 | 1 | F01: goroutine + WaitGroup basics |
+| 2026-05-01 | 1 | 1 | F02: WaitGroup pattern clean |
 
 ---
 
