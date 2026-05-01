@@ -5,18 +5,18 @@ import (
 )
 
 func main() {
+	// defer func() {
+	// 	if r := recover(); r != nil {
+	// 		log.Println("panic caught — send on closed channel:", r)
+	// 	}
+	// }()
+
 	ch := make(chan int, 3)
 
 	print(ch)
 
-	// a := <-ch
-	// log.Println(a)
-	// b := <-ch
-	// log.Println(b)
-	// c := <-ch
-	// log.Println(c)	
-
-	// close(ch);
+	close(ch);
+	ch <- 5
 	for v := range ch {
 		log.Println(v)
 	}

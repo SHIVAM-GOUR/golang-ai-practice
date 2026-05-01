@@ -44,6 +44,7 @@
 | 2026-05-01 | 1 | 1 | F02: WaitGroup pattern clean |
 | 2026-05-01 | 1 | 1 | F03: unbuffered channel send/receive |
 | 2026-05-01 | 1 | 1 | F04: buffered channel, no goroutine needed |
+| 2026-05-01 | 1 | 1 | F05: close channel, range to drain |
 
 ---
 
