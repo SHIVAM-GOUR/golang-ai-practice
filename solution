@@ -2,19 +2,29 @@ package main
 
 import (
 	"log"
-	"sync"
 )
 
 func main() {
-	var wg sync.WaitGroup
+	ch := make(chan int, 3)
 
-	wg.Add(1)
-	go print("hello world", &wg)
+	print(ch)
 
-	wg.Wait()
+	// a := <-ch
+	// log.Println(a)
+	// b := <-ch
+	// log.Println(b)
+	// c := <-ch
+	// log.Println(c)	
+
+	close(ch);
+	for v := range ch {
+		log.Println(v)
+	}
+
 }
 
-func print(name string, wg *sync.WaitGroup) {
-	defer wg.Done()
-	log.Println(name)
+func print(ch chan int) {
+	ch <- 1
+	ch <- 2
+	ch <- 3
 }
