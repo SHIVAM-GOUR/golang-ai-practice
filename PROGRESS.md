@@ -2,7 +2,7 @@
 
 ## Streak
 **Current streak:** 1 days
-**Last practiced:** 2026-04-29
+**Last practiced:** 2026-05-07
 **Longest streak:** 1 days
 
 ---
@@ -45,6 +45,8 @@
 | 2026-05-01 | 1 | 1 | F03: unbuffered channel send/receive |
 | 2026-05-01 | 1 | 1 | F04: buffered channel, no goroutine needed |
 | 2026-05-01 | 1 | 1 | F05: close channel, range to drain |
+| 2026-05-07 | 1 | 1 | F06: select, receive from first ready channel |
+| 2026-05-07 | 1 | 1 | F07: select with default for non-blocking receive |
 
 ---
 
