@@ -1,9 +1,9 @@
 # Progress Tracker
 
 ## Streak
-**Current streak:** 1 days
-**Last practiced:** 2026-05-07
-**Longest streak:** 1 days
+**Current streak:** 2 days
+**Last practiced:** 2026-05-13
+**Longest streak:** 2 days
 
 ---
 
@@ -22,7 +22,7 @@
 - [ ] Complete HTTP + io + Testing + Memory (13/13)
 - [ ] All 79 problems solved 🎉
 
-**Next milestone:** Solve first problem
+**Next milestone:** Complete Fundamentals (30/30)
 
 ---
 
@@ -32,7 +32,9 @@
 
 | Pattern | Attempted | Mastered | Notes |
 |---------|-----------|----------|-------|
-| — | — | — | No data yet |
+| Loop variable capture | F10 | — | Passed &i instead of i; all goroutines saw final value (5) |
+| Atomic on wrong pointer | F11 | — | Called AddInt64 on local copy instead of the actual shared var |
+| Two atomics ≠ atomic | F11 (cross-Q) | — | Load + Add separately is still a race; use single AddInt64 |
 
 ---
 
@@ -47,6 +49,8 @@
 | 2026-05-01 | 1 | 1 | F05: close channel, range to drain |
 | 2026-05-07 | 1 | 1 | F06: select, receive from first ready channel |
 | 2026-05-07 | 1 | 1 | F07: select with default for non-blocking receive |
+| 2026-05-12 | 1 | 1 | F08: sync.Mutex pointer sharing, WaitGroup pattern |
+| 2026-05-13 | 3 | 3 | F09: sync.Once + WaitGroup; F10: loop variable capture (&i bug); F11: atomic.AddInt64 |
 
 ---
 

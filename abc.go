@@ -1,30 +1,30 @@
 package main
 
-import (
-	"fmt"
-)
+// import (
+// 	"fmt"
+// 	"sync"
+// )
 
-func main() {
-	ch1 := make(chan int, 1)
-	ch2 := make(chan int, 1)
-	ch3 := make(chan int, 1)
+// func main() {
+// 	counter := 0
+// 	var mu sync.Mutex
+// 	var wg sync.WaitGroup
 
-	go func() { ch1 <- 1 }()
-	go func() { ch2 <- 2 }()
-	go func() { ch3 <- 3 }()
-	// ch1 <- 1
-	// ch2 <- 2
-	// ch3 <- 3
+// 	for i := 0; i < 5; i++ {
+// 		wg.Add(1)
+// 		go increment(&counter, &mu, &wg)
+// 	}
 
-	select {
-	case res := <-ch1:
-		fmt.Println("res: ", res)
-	case res := <-ch2:
-		fmt.Println("res: ", res)
-	case res := <-ch3:
-		fmt.Println("res: ", res)
-	default:
-		fmt.Println("no channels ready")
-	}
+// 	wg.Wait()
+// 	fmt.Println("counter: ", counter)
 
-}
+// }
+
+// func increment(n *int, mu *sync.Mutex, wg *sync.WaitGroup) {
+// 	defer wg.Done()
+// 	mu.Lock()
+// 	defer mu.Unlock()
+// 	for i := 0; i < 1000; i++ {
+// 		*n++
+// 	}
+// }
