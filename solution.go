@@ -1,25 +1,44 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"sync"
-	"sync/atomic"
+)
+
+type ctxKey string
+
+const (
+	userKey  ctxKey = "user"
+	otherKey ctxKey = "other"
 )
 
 func main() {
-	var wg sync.WaitGroup
-	var counter int64
+	// var wg sync.WaitGroup
 
-	for i := 0; i < 100; i++ {
-		wg.Add(1)
-		go task(&wg, &counter)
-	}
+	ctx := context.WithValue(context.Background(), userKey, "martha-wayne")
 
-	wg.Wait()
-	fmt.Println("final counter: ", atomic.LoadInt64(&counter))
+	fn1(ctx)
+
 }
 
-func task(wg *sync.WaitGroup, counter *int64) {
-	defer wg.Done()
-	atomic.AddInt64(counter, 1)
+func fn1(ctx context.Context) {
+	ctx2 := context.WithValue(ctx, otherKey, "other")
+	fn2(ctx2)
+}
+
+func fn2(ctx context.Context) {
+	val := ctx.Value(userKey)
+
+	if val == nil {
+		println("key value missing from the context: ", userKey)
+	} else {
+		user, ok := val.(string)
+		if !ok {
+			println("unexpected type for value: ", userKey)
+		} else {
+			fmt.Println("context value: ", user)
+		}
+
+	}
+
 }

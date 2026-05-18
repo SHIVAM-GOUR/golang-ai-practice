@@ -1,12 +1,12 @@
 # Go Core Concepts Practice Tracker
 
-**Overall: 11/79 solved**
+**Overall: 14/79 solved**
 
 > Legend: `[ ]` Unsolved · `[~]` Attempted · `[x]` Solved · `[★]` Mastered · `►` Current
 
 ---
 
-## Fundamentals [8/30]
+## Fundamentals [11/30]
 
 > Mixed topics, very easy to easy. Start here if you want to warm up before the deeper groups.
 
@@ -23,10 +23,10 @@
 | F09 | Use sync.Once to initialize a config struct exactly once | sync | [x] |
 | F10 | Use sync.WaitGroup to launch 5 goroutines and wait for all to finish | sync | [x] |
 | F11 | Increment a counter from 100 goroutines using atomic.AddInt64 | atomic | [x] |
-| F12 ► | Create a context with cancel, pass it to a goroutine, call cancel() | Context | [ ] |
-| F13 | Create a context with a 1-second timeout; show it expires | Context | [ ] |
-| F14 | Use context.WithValue to attach a request-ID string, read it inside a func | Context | [ ] |
-| F15 | Use defer to ensure a file (or fake closer) is always closed | defer | [ ] |
+| F12 | Create a context with cancel, pass it to a goroutine, call cancel() | Context | [x] |
+| F13 | Create a context with a 1-second timeout; show it expires | Context | [x] |
+| F14 | Use context.WithValue to attach a request-ID string, read it inside a func | Context | [x] |
+| F15 ► | Use defer to ensure a file (or fake closer) is always closed | defer | [ ] |
 | F16 | Use defer mu.Unlock() immediately after mu.Lock() in a function | defer | [ ] |
 | F17 | Define a sentinel error with errors.New; check it with errors.Is | Errors | [ ] |
 | F18 | Wrap an error with fmt.Errorf("...: %w", err); unwrap with errors.As | Errors | [ ] |

@@ -51,6 +51,9 @@
 | 2026-05-07 | 1 | 1 | F07: select with default for non-blocking receive |
 | 2026-05-12 | 1 | 1 | F08: sync.Mutex pointer sharing, WaitGroup pattern |
 | 2026-05-13 | 3 | 3 | F09: sync.Once + WaitGroup; F10: loop variable capture (&i bug); F11: atomic.AddInt64 |
+| 2026-05-16 | 1 | 1 | F12: context.WithCancel, goroutine respects ctx.Done() via select |
+| 2026-05-17 | 1 | 1 | F13: context.WithTimeout, select with time.After to show deadline exceeded |
+| 2026-05-18 | 1 | 1 | F14: context.WithValue, unexported key type, nil check + type assertion |
 
 ---
 
