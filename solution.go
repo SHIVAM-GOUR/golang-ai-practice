@@ -1,44 +1,29 @@
 package main
 
 import (
-	"context"
 	"fmt"
-)
-
-type ctxKey string
-
-const (
-	userKey  ctxKey = "user"
-	otherKey ctxKey = "other"
+	"sync"
 )
 
 func main() {
-	// var wg sync.WaitGroup
+	// var mu sync.Mutex
+	var wg sync.WaitGroup
 
-	ctx := context.WithValue(context.Background(), userKey, "martha-wayne")
-
-	fn1(ctx)
-
-}
-
-func fn1(ctx context.Context) {
-	ctx2 := context.WithValue(ctx, otherKey, "other")
-	fn2(ctx2)
-}
-
-func fn2(ctx context.Context) {
-	val := ctx.Value(userKey)
-
-	if val == nil {
-		println("key value missing from the context: ", userKey)
-	} else {
-		user, ok := val.(string)
-		if !ok {
-			println("unexpected type for value: ", userKey)
-		} else {
-			fmt.Println("context value: ", user)
-		}
-
+	p := 0
+	for i := 0; i < 5; i++ {
+		wg.Add(1)
+		// go increment(&p, &mu, &wg)
+		go increment(&p, &wg)
 	}
 
+	wg.Wait()
+	fmt.Println("final value: ", p)
+}
+
+// func increment(i *int, mu *sync.Mutex, wg *sync.WaitGroup) {
+func increment(i *int, wg *sync.WaitGroup) {
+	// mu.Lock()
+	defer wg.Done()
+	// defer mu.Unlock()
+	*i++
 }

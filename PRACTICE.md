@@ -1,12 +1,12 @@
 # Go Core Concepts Practice Tracker
 
-**Overall: 14/79 solved**
+**Overall: 16/79 solved**
 
 > Legend: `[ ]` Unsolved · `[~]` Attempted · `[x]` Solved · `[★]` Mastered · `►` Current
 
 ---
 
-## Fundamentals [11/30]
+## Fundamentals [12/30]
 
 > Mixed topics, very easy to easy. Start here if you want to warm up before the deeper groups.
 
@@ -26,9 +26,9 @@
 | F12 | Create a context with cancel, pass it to a goroutine, call cancel() | Context | [x] |
 | F13 | Create a context with a 1-second timeout; show it expires | Context | [x] |
 | F14 | Use context.WithValue to attach a request-ID string, read it inside a func | Context | [x] |
-| F15 ► | Use defer to ensure a file (or fake closer) is always closed | defer | [ ] |
-| F16 | Use defer mu.Unlock() immediately after mu.Lock() in a function | defer | [ ] |
-| F17 | Define a sentinel error with errors.New; check it with errors.Is | Errors | [ ] |
+| F15 | Use defer to ensure a file (or fake closer) is always closed | defer | [x] |
+| F16 | Use defer mu.Unlock() immediately after mu.Lock() in a function | defer | [x] |
+| F17 ► | Define a sentinel error with errors.New; check it with errors.Is | Errors | [ ] |
 | F18 | Wrap an error with fmt.Errorf("...: %w", err); unwrap with errors.As | Errors | [ ] |
 | F19 | Create a custom error type with an extra Code field; implement error interface | Errors | [ ] |
 | F20 | Use recover() inside a deferred function to catch a panic | panic/recover | [ ] |
