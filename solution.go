@@ -2,19 +2,16 @@ package main
 
 import (
 	"fmt"
-	"sync"
 )
 
 func main() {
-	var wg sync.WaitGroup
+	ch := make(chan int)
 
-	wg.Add(1)
-	go train(&wg)
+	go func() {
+		ch <- 42
+	}()
 
-	wg.Wait()
-}
+	v := <-ch
+	fmt.Println(v)
 
-func train(wg *sync.WaitGroup) {
-	defer wg.Done()
-	fmt.Println("Hello from Goroutine")
 }
