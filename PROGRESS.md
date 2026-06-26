@@ -55,6 +55,7 @@
 | 2026-05-17 | 1 | 1 | F13: context.WithTimeout, select with time.After to show deadline exceeded |
 | 2026-05-18 | 1 | 1 | F14: context.WithValue, unexported key type, nil check + type assertion |
 | 2026-06-06 | 2 | 2 | F15: defer file.Close() after error check — canonical Go cleanup pattern; F16: defer mu.Unlock() after mu.Lock(), mutex must be passed as pointer |
+| 2026-06-07 | 1 | 1 | F17: sentinel errors are pointer-compared — must be package-level var, not re-created; errors.Is(err, target) argument order |
 
 ---
 
