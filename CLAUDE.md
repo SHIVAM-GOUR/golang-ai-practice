@@ -12,7 +12,7 @@ When the user says "check solution" or asks you to review their `solution` file:
 When a solution is confirmed correct and the user agrees to mark it solved:
 1. Update `PRACTICE.md` and `PROGRESS.md` as usual
 2. Then **always ask**: "Want cross questioning?"
-3. If the user says yes, ask 3-5 deep conceptual questions about that specific solution — focus on:
+3. If the user says yes, ask questions **one at a time** — wait for the user to answer each question before asking the next. Prepare 3-5 deep conceptual questions about that specific solution — focus on:
    - Why this approach works in Go (not just what it does)
    - Edge cases: race conditions, goroutine leaks, nil channel panics, deadlocks
    - What happens under the race detector (`go test -race`)

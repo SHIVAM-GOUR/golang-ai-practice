@@ -1,14 +1,14 @@
 # Progress Tracker
 
 ## Streak
-**Current streak:** 0 days
-**Last practiced:** —
+**Current streak:** 1 day
+**Last practiced:** 2026-06-26
 **Longest streak:** 2 days
 
 ---
 
 ## Milestones
-- [ ] First problem solved
+- [x] First problem solved
 - [ ] Complete Fundamentals (30/30)
 - [ ] Complete Goroutines (4/4)
 - [ ] Complete Channels (5/5)
@@ -42,6 +42,7 @@
 
 | Date | Problems Attempted | Problems Solved | Notes |
 |------|-------------------|-----------------|-------|
+| 2026-06-26 | 1 | 1 | F01: launch goroutine, print hello |
 
 ---
 

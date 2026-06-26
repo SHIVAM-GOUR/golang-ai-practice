@@ -1,19 +1,19 @@
 # Go Core Concepts Practice Tracker
 
-**Overall: 0/79 solved**
+**Overall: 1/79 solved**
 
 > Legend: `[ ]` Unsolved · `[~]` Attempted · `[x]` Solved · `[★]` Mastered · `►` Current
 
 ---
 
-## Fundamentals [0/30]
+## Fundamentals [1/30]
 
 > Mixed topics, very easy to easy. Start here if you want to warm up before the deeper groups.
 
 | ID | Challenge | Topic | Status |
 |----|-----------|-------|--------|
-| F01 ► | Launch a goroutine, print "hello" from inside it | Goroutines | [ ] |
-| F02 | Launch a goroutine and wait for it to finish using WaitGroup | Goroutines | [ ] |
+| F01 | Launch a goroutine, print "hello" from inside it | Goroutines | [x] |
+| F02 ► | Launch a goroutine and wait for it to finish using WaitGroup | Goroutines | [ ] |
 | F03 | Send a value into an unbuffered channel from a goroutine, receive in main | Channels | [ ] |
 | F04 | Create a buffered channel of size 3, send 3 values without blocking | Channels | [ ] |
 | F05 | Close a channel after sending; iterate its values with range | Channels | [ ] |
