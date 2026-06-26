@@ -10,8 +10,13 @@ When the user says "check solution" or asks you to review their `solution` file:
 ## After a Correct Solution
 
 When a solution is confirmed correct and the user agrees to mark it solved:
-1. Update `PRACTICE.md` and `PROGRESS.md` as usual
-2. Then **always ask**: "Want cross questioning?"
+1. Update `PRACTICE.md`:
+   - Increment the `**Overall: N/79 solved**` counter
+   - Change the problem's status from `[ ]` to `[x]`
+   - Move the `►` marker from this problem to the next unsolved one
+2. Update `PROGRESS.md`:
+   - Add or update today's row in the Session Log table
+3. Then **always ask**: "Want cross questioning?"
 3. If the user says yes, ask questions **one at a time** — wait for the user to answer each question before asking the next. Prepare 3-5 deep conceptual questions about that specific solution — focus on:
    - Why this approach works in Go (not just what it does)
    - Edge cases: race conditions, goroutine leaks, nil channel panics, deadlocks

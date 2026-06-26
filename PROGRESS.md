@@ -42,7 +42,7 @@
 
 | Date | Problems Attempted | Problems Solved | Notes |
 |------|-------------------|-----------------|-------|
-| 2026-06-26 | 1 | 1 | F01: launch goroutine, print hello |
+| 2026-06-26 | 2 | 2 | F01: launch goroutine, print hello. F02: WaitGroup to wait for goroutine |
 
 ---
 
