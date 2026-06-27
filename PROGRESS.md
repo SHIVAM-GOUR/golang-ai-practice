@@ -43,6 +43,7 @@
 | Date | Problems Attempted | Problems Solved | Notes |
 |------|-------------------|-----------------|-------|
 | 2026-06-26 | 3 | 3 | F01: launch goroutine, print hello. F02: WaitGroup to wait for goroutine. F03: unbuffered channel send/receive |
+| 2026-06-27 | 1 | 1 | F04: buffered channel of size 3, send 3 values without blocking |
 
 ---
 

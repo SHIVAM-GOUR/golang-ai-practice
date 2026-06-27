@@ -8,10 +8,13 @@ func main() {
 	ch := make(chan int)
 
 	go func() {
-		ch <- 42
+		ch <- 1
+		// ch <- 2
+		// ch <- 3
 	}()
 
-	v := <-ch
-	fmt.Println(v)
+	for i := 0; i < 3; i++ {
+		fmt.Println(<-ch)
+	}
 
 }
