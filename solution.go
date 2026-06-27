@@ -2,34 +2,24 @@ package main
 
 import (
 	"fmt"
-	"sync"
 )
 
 func main() {
-	ch := make(chan int, 3)
-	var once sync.Once
+	ch := make(chan int)
+	ch2 := make(chan int)
 
-	closeChannel := func() {
-		once.Do(func() {
-			close(ch)
-		})
+	go demo(ch, 1)
+	go demo(ch2, 2)
+
+	select {
+	case v := <-ch:
+		fmt.Println(v)
+	case v2 := <-ch2:
+		fmt.Println(v2)
 	}
 
-	ch <- 1
-	ch <- 2
-	ch <- 3
-	go closeChannel()
-	go closeChannel()
-	// go func() {
-	// closeChannel()
-	// }()
-	// go func() {
-	// 	ch <- 3
-	// 	// closeChannel()
-	// }()
+}
 
-	for val := range ch {
-		fmt.Println(val)
-	}
-
+func demo(ch chan int, value int) {
+	ch <- value
 }

@@ -1,6 +1,6 @@
 # Go Core Concepts Practice Tracker
 
-**Overall: 5/79 solved**
+**Overall: 6/79 solved**
 
 > Legend: `[ ]` Unsolved · `[~]` Attempted · `[x]` Solved · `[★]` Mastered · `►` Current
 
@@ -17,8 +17,8 @@
 | F03 | Send a value into an unbuffered channel from a goroutine, receive in main | Channels | [x] |
 | F04 | Create a buffered channel of size 3, send 3 values without blocking | Channels | [x] |
 | F05 | Close a channel after sending; iterate its values with range | Channels | [x] |
-| F06 ► | Use select to receive from whichever of two channels is ready first | Select | [ ] |
-| F07 | Use select with a default case to do a non-blocking receive | Select | [ ] |
+| F06 | Use select to receive from whichever of two channels is ready first | Select | [x] |
+| F07 ► | Use select with a default case to do a non-blocking receive | Select | [ ] |
 | F08 | Protect a shared integer counter with sync.Mutex across 5 goroutines | sync | [ ] |
 | F09 | Use sync.Once to initialize a config struct exactly once | sync | [ ] |
 | F10 | Use sync.WaitGroup to launch 5 goroutines and wait for all to finish | sync | [ ] |

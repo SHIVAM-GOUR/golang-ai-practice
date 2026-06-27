@@ -43,7 +43,7 @@
 | Date | Problems Attempted | Problems Solved | Notes |
 |------|-------------------|-----------------|-------|
 | 2026-06-26 | 3 | 3 | F01: launch goroutine, print hello. F02: WaitGroup to wait for goroutine. F03: unbuffered channel send/receive |
-| 2026-06-27 | 2 | 2 | F04: buffered channel of size 3, send 3 values without blocking. F05: close channel, iterate with range |
+| 2026-06-27 | 3 | 3 | F04: buffered channel of size 3, send 3 values without blocking. F05: close channel, iterate with range. F06: select from two channels |
 
 ---
 
