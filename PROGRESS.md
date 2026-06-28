@@ -44,6 +44,7 @@
 |------|-------------------|-----------------|-------|
 | 2026-06-26 | 3 | 3 | F01: launch goroutine, print hello. F02: WaitGroup to wait for goroutine. F03: unbuffered channel send/receive |
 | 2026-06-27 | 3 | 3 | F04: buffered channel of size 3, send 3 values without blocking. F05: close channel, iterate with range. F06: select from two channels |
+| 2026-06-28 | 5 | 5 | F07: select with default case for non-blocking receive; caught goroutine leak with unbuffered channels. F08: sync.Mutex to protect shared counter; replaced time.Sleep with WaitGroup. F09: sync.Once to initialize config struct exactly once across goroutines. F10: WaitGroup to launch 5 goroutines and wait for all to finish. F11: atomic.AddInt64 to increment counter from 100 goroutines |
 
 ---
 

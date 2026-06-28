@@ -2,24 +2,24 @@ package main
 
 import (
 	"fmt"
+	"sync"
+	"sync/atomic"
 )
 
 func main() {
-	ch := make(chan int)
-	ch2 := make(chan int)
+	var counter int64
+	var wg sync.WaitGroup
 
-	go demo(ch, 1)
-	go demo(ch2, 2)
-
-	select {
-	case v := <-ch:
-		fmt.Println(v)
-	case v2 := <-ch2:
-		fmt.Println(v2)
+	for i := 0; i < 100; i++ {
+		wg.Add(1)
+		go inc(&counter, 1, &wg)
 	}
 
+	wg.Wait()
+	fmt.Println(counter)
 }
 
-func demo(ch chan int, value int) {
-	ch <- value
+func inc(counter *int64, new int64, wg *sync.WaitGroup) {
+	defer wg.Done()
+	atomic.AddInt64(counter, new)
 }
