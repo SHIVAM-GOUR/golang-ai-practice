@@ -36,12 +36,17 @@ func main() {
 	m := Maalik{Name: "Karan", Work: "Aaram"}
 	n := Nokar{Name: "Shivam", Work: "coding"}
 
-	a := m.Do()
-	fmt.Println(a)
+	doers := []Doer{m, n}
+	for _, val := range doers {
+		printDoerInfo(val)
+	}
 
-	b := n.Do()
-	fmt.Println(b)
+	// a := m.Do()
+	// fmt.Println(a)
 
-	printDoerInfo(m)
-	printDoerInfo(n)
+	// b := n.Do()
+	// fmt.Println(b)
+
+	// printDoerInfo(m)
+	// printDoerInfo(n)
 }
