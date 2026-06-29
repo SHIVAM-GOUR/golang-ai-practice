@@ -44,7 +44,8 @@
 |------|-------------------|-----------------|-------|
 | 2026-06-26 | 3 | 3 | F01: launch goroutine, print hello. F02: WaitGroup to wait for goroutine. F03: unbuffered channel send/receive |
 | 2026-06-27 | 3 | 3 | F04: buffered channel of size 3, send 3 values without blocking. F05: close channel, iterate with range. F06: select from two channels |
-| 2026-06-28 | 5 | 5 | F07: select with default case for non-blocking receive; caught goroutine leak with unbuffered channels. F08: sync.Mutex to protect shared counter; replaced time.Sleep with WaitGroup. F09: sync.Once to initialize config struct exactly once across goroutines. F10: WaitGroup to launch 5 goroutines and wait for all to finish. F11: atomic.AddInt64 to increment counter from 100 goroutines |
+| 2026-06-28 | 11 | 11 | F07: select with default case for non-blocking receive; caught goroutine leak with unbuffered channels. F08: sync.Mutex to protect shared counter; replaced time.Sleep with WaitGroup. F09: sync.Once to initialize config struct exactly once across goroutines. F10: WaitGroup to launch 5 goroutines and wait for all to finish. F11: atomic.AddInt64 to increment counter from 100 goroutines. F12: context.WithCancel passed to goroutine; goroutine exits on ctx.Done(). F13: context.WithTimeout expires after 1s; ctx.Err() shows deadline exceeded. F14: context.WithValue with unexported key type to avoid collisions. F15: defer close on fake resource; fires even on early return. F16: defer mu.Unlock() immediately after mu.Lock(); unlocks even on early return. F17: sentinel error with errors.New; checked with errors.Is |
+| 2026-06-29 | 2 | 2 | F19: custom error type with Code field; implemented error interface, wrapped with %w, unwrapped with errors.As. F20: recover() inside deferred function catches panic; named return lets defer set the error value |
 
 ---
 

@@ -1,6 +1,6 @@
 # Go Core Concepts Practice Tracker
 
-**Overall: 11/79 solved**
+**Overall: 19/79 solved**
 
 > Legend: `[ ]` Unsolved · `[~]` Attempted · `[x]` Solved · `[★]` Mastered · `►` Current
 
@@ -23,16 +23,16 @@
 | F09 | Use sync.Once to initialize a config struct exactly once | sync | [x] |
 | F10 | Use sync.WaitGroup to launch 5 goroutines and wait for all to finish | sync | [x] |
 | F11 | Increment a counter from 100 goroutines using atomic.AddInt64 | atomic | [x] |
-| F12 ► | Create a context with cancel, pass it to a goroutine, call cancel() | Context | [ ] |
-| F13 | Create a context with a 1-second timeout; show it expires | Context | [ ] |
-| F14 | Use context.WithValue to attach a request-ID string, read it inside a func | Context | [ ] |
-| F15 | Use defer to ensure a file (or fake closer) is always closed | defer | [ ] |
-| F16 | Use defer mu.Unlock() immediately after mu.Lock() in a function | defer | [ ] |
-| F17 | Define a sentinel error with errors.New; check it with errors.Is | Errors | [ ] |
-| F18 | Wrap an error with fmt.Errorf("...: %w", err); unwrap with errors.As | Errors | [ ] |
-| F19 | Create a custom error type with an extra Code field; implement error interface | Errors | [ ] |
-| F20 | Use recover() inside a deferred function to catch a panic | panic/recover | [ ] |
-| F21 | Implement fmt.Stringer on a struct (print a formatted representation) | Interfaces | [ ] |
+| F12 | Create a context with cancel, pass it to a goroutine, call cancel() | Context | [x] |
+| F13 | Create a context with a 1-second timeout; show it expires | Context | [x] |
+| F14 | Use context.WithValue to attach a request-ID string, read it inside a func | Context | [x] |
+| F15 | Use defer to ensure a file (or fake closer) is always closed | defer | [x] |
+| F16 | Use defer mu.Unlock() immediately after mu.Lock() in a function | defer | [x] |
+| F17 | Define a sentinel error with errors.New; check it with errors.Is | Errors | [x] |
+| F18 | Wrap an error with fmt.Errorf("...: %w", err); unwrap with errors.As | Errors | [~] |
+| F19 | Create a custom error type with an extra Code field; implement error interface | Errors | [x] |
+| F20 | Use recover() inside a deferred function to catch a panic | panic/recover | [x] |
+| F21 ► | Implement fmt.Stringer on a struct (print a formatted representation) | Interfaces | [ ] |
 | F22 | Define a small interface (Doer); implement it on two different structs | Interfaces | [ ] |
 | F23 | Type-assert an interface value to a concrete type; handle the false case | Interfaces | [ ] |
 | F24 | Implement io.Reader on a struct that reads from a fixed string | Interfaces | [ ] |

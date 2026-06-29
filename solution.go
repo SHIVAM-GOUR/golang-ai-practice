@@ -2,24 +2,35 @@ package main
 
 import (
 	"fmt"
-	"sync"
-	"sync/atomic"
 )
 
 func main() {
-	var counter int64
-	var wg sync.WaitGroup
+	// err := work()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 
-	for i := 0; i < 100; i++ {
-		wg.Add(1)
-		go inc(&counter, 1, &wg)
-	}
+	defer func() {
+		r := recover()
+		if r != nil {
+			fmt.Println("caught: ", r)
+		}
 
-	wg.Wait()
-	fmt.Println(counter)
+		go func() {
+			panic("goroutine panic")
+		}()
+	}()
+
 }
 
-func inc(counter *int64, new int64, wg *sync.WaitGroup) {
-	defer wg.Done()
-	atomic.AddInt64(counter, new)
-}
+// func work() (err error) {
+// 	defer func() {
+// 		r := recover()
+// 		if r != nil {
+// 			err = fmt.Errorf("recovered: %v", r)
+// 		}
+// 	}()
+// 	panic("panic occurred")
+// 	fmt.Println("Task Scuccess")
+// 	return nil
+// }

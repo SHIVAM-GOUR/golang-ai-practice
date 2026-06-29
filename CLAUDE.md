@@ -16,7 +16,10 @@ When a solution is confirmed correct and the user agrees to mark it solved:
    - Move the `►` marker from this problem to the next unsolved one
 2. Update `PROGRESS.md`:
    - Add or update today's row in the Session Log table
-3. Then **always ask**: "Want cross questioning?"
+3. Save the solution to `SOLUTIONS.md`:
+   - Append a section with the problem ID, title, and the full contents of `solution.go`
+   - Format: `## F07 — <problem title>` followed by a Go code block
+4. Then **always ask**: "Want cross questioning?"
 3. If the user says yes, ask questions **one at a time** — wait for the user to answer each question before asking the next. Prepare 3-5 deep conceptual questions about that specific solution — focus on:
    - Why this approach works in Go (not just what it does)
    - Edge cases: race conditions, goroutine leaks, nil channel panics, deadlocks
