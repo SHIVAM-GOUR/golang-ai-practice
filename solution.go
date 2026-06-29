@@ -1,36 +1,47 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-func main() {
-	// err := work()
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-
-	defer func() {
-		r := recover()
-		if r != nil {
-			fmt.Println("caught: ", r)
-		}
-
-		go func() {
-			panic("goroutine panic")
-		}()
-	}()
-
+type Doer interface {
+	Do() string
+	// Undo() string
 }
 
-// func work() (err error) {
-// 	defer func() {
-// 		r := recover()
-// 		if r != nil {
-// 			err = fmt.Errorf("recovered: %v", r)
-// 		}
-// 	}()
-// 	panic("panic occurred")
-// 	fmt.Println("Task Scuccess")
-// 	return nil
-// }
+// Oye Hoye ky scene he
+type Maalik struct {
+	Name string
+	Work string
+}
+
+func (m Maalik) Do() string {
+	return fmt.Sprintf("Maalik %s does %s", m.Name, m.Work)
+}
+
+// Oye Hoye ky scene he - 2
+type Nokar struct {
+	Name string
+	Work string
+}
+
+func (n Nokar) Do() string {
+	return fmt.Sprintf("Nokar %s does %s", n.Name, n.Work)
+}
+
+// Combo scene
+func printDoerInfo(d Doer) {
+	fmt.Printf("MSG: %s \n", d.Do())
+}
+
+func main() {
+	m := Maalik{Name: "Karan", Work: "Aaram"}
+	n := Nokar{Name: "Shivam", Work: "coding"}
+
+	a := m.Do()
+	fmt.Println(a)
+
+	b := n.Do()
+	fmt.Println(b)
+
+	printDoerInfo(m)
+	printDoerInfo(n)
+}

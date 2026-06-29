@@ -541,3 +541,77 @@ func work() (err error) {
 	return nil
 }
 ```
+
+---
+
+## F21 — Implement fmt.Stringer on a struct (print a formatted representation)
+
+```go
+package main
+
+import "fmt"
+
+type User struct {
+	Name string
+	Age  int
+}
+
+func (u User) String() string {
+	return fmt.Sprintf("User{Name:%s, Age:%d}", u.Name, u.Age)
+}
+
+func main() {
+	u := User{Name: "shivam", Age: 22}
+	fmt.Println(u)
+}
+```
+
+---
+
+## F22 — Define a small interface (Doer); implement it on two different structs
+
+```go
+package main
+
+import "fmt"
+
+type Doer interface {
+	Do() string
+}
+
+type Maalik struct {
+	Name string
+	Work string
+}
+
+func (m Maalik) Do() string {
+	return fmt.Sprintf("Maalik %s does %s", m.Name, m.Work)
+}
+
+type Nokar struct {
+	Name string
+	Work string
+}
+
+func (n Nokar) Do() string {
+	return fmt.Sprintf("Nokar %s does %s", n.Name, n.Work)
+}
+
+func printDoerInfo(d Doer) {
+	fmt.Printf("MSG: %s \n", d.Do())
+}
+
+func main() {
+	m := Maalik{Name: "Karan", Work: "Aaram"}
+	n := Nokar{Name: "Shivam", Work: "coding"}
+
+	a := m.Do()
+	fmt.Println(a)
+
+	b := n.Do()
+	fmt.Println(b)
+
+	printDoerInfo(m)
+	printDoerInfo(n)
+}
+```
