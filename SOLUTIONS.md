@@ -615,3 +615,58 @@ func main() {
 	printDoerInfo(n)
 }
 ```
+
+---
+
+## F23 — Type-assert an interface value to a concrete type; handle the false case
+
+```go
+package main
+
+import "fmt"
+
+type Doer interface {
+	Do() string
+}
+
+type Maalik struct {
+	Name string
+	Work string
+}
+
+func (m Maalik) Do() string {
+	return fmt.Sprintf("Maalik %s does %s", m.Name, m.Work)
+}
+
+type Nokar struct {
+	Name string
+	Work string
+}
+
+func (n Nokar) Do() string {
+	return fmt.Sprintf("Nokar %s does %s", n.Name, n.Work)
+}
+
+func printDoerInfo(d Doer) {
+	fmt.Printf("MSG: %s \n", d.Do())
+}
+
+func main() {
+	var d Doer = Nokar{Name: "Karan", Work: "Management"}
+
+	m, ok := d.(Maalik)
+	if ok {
+		fmt.Println(m.Name)
+	} else {
+		fmt.Println("Not a Maalik")
+	}
+
+	var e Doer = Nokar{Name: "Shikha", Work: "Masti"}
+	n, ok := e.(Nokar)
+	if ok {
+		fmt.Println("Nokar Name: ", n.Name)
+	} else {
+		fmt.Println("Not a Nokar")
+	}
+}
+```

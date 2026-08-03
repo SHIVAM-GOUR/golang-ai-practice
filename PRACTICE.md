@@ -1,6 +1,6 @@
 # Go Core Concepts Practice Tracker
 
-**Overall: 21/79 solved**
+**Overall: 22/79 solved**
 
 > Legend: `[ ]` Unsolved · `[~]` Attempted · `[x]` Solved · `[★]` Mastered · `►` Current
 
@@ -34,8 +34,8 @@
 | F20 | Use recover() inside a deferred function to catch a panic | panic/recover | [x] |
 | F21 | Implement fmt.Stringer on a struct (print a formatted representation) | Interfaces | [x] |
 | F22 | Define a small interface (Doer); implement it on two different structs | Interfaces | [x] |
-| F23 ► | Type-assert an interface value to a concrete type; handle the false case | Interfaces | [ ] |
-| F24 | Implement io.Reader on a struct that reads from a fixed string | Interfaces | [ ] |
+| F23 | Type-assert an interface value to a concrete type; handle the false case | Interfaces | [x] |
+| F24 ► | Implement io.Reader on a struct that reads from a fixed string | Interfaces | [ ] |
 | F25 | Write a generic Map[T, U] function that transforms a slice | Generics | [ ] |
 | F26 | Write a goroutine that stops when a done channel is closed | Channels | [ ] |
 | F27 | Fan-out: launch N goroutines each writing a result to a shared slice (with mutex) | Goroutines | [ ] |

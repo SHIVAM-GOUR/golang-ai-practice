@@ -33,20 +33,15 @@ func printDoerInfo(d Doer) {
 }
 
 func main() {
-	m := Maalik{Name: "Karan", Work: "Aaram"}
-	n := Nokar{Name: "Shivam", Work: "coding"}
+	var d Doer = Maalik{Name: "Karan", Work: "Management"}
 
-	doers := []Doer{m, n}
-	for _, val := range doers {
-		printDoerInfo(val)
+	switch v := d.(type) {
+	case Maalik:
+		fmt.Println("It's a Maalik: ", v.Name)
+	case Nokar:
+		fmt.Println("It's a Nokar: ", v.Name)
+	default:
+		fmt.Println("unknown type")
 	}
 
-	// a := m.Do()
-	// fmt.Println(a)
-
-	// b := n.Do()
-	// fmt.Println(b)
-
-	// printDoerInfo(m)
-	// printDoerInfo(n)
 }
